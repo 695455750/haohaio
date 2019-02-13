@@ -1,0 +1,65 @@
+<!--index.wxml-->
+<scroll-view scroll-y="true" class="container" lower-threshold="20" bindscrolltolower="lower">
+
+
+  <block wx:for="{{jokes}}">
+    <view class="feed-item">
+      <view class="feed-source">
+        <a>
+          <view class="avatar">
+            <image src="{{item.sourceUrl}}"></image>
+          </view>
+          <text>{{item.title}}</text>
+        </a>
+        <text class="item-more">{{item.create_time}}</text>
+      </view>
+      <view class="feed-content">
+        <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
+          <a class="question-link">
+            <!--<text>{{item.text}}</text>-->
+            <image mode="aspectFill" data-imgUrl="{{item.sourceUrl}}" bindtap="previewImg" src="{{item.sourceUrl}}"></image>
+          </a>
+        </view>
+        <!--底部-->
+        <view class="bottom">
+          <!--赞-->
+          <view class="bottom-item" catchtap="zanEvent" id="{{item.id}}">
+            <view class="bottom-item-content">
+              <image src="../../images/index/mainCellDing.png" mode="center"></image>
+              <text class="bottom-item-zan-text">{{item.love}}</text>
+            </view>
+            <!--分割线-->
+            <!-- <view class="cut-line"></view> -->
+          </view>
+          <!--踩-->
+          <view class="bottom-item" catchtap="caiEvent" id="{{item.id}}">
+            <view class="bottom-item-content cai">
+              <image src="../../images/index/mainCellCai.png" mode="center"></image>
+              <text class="bottom-item-zan-text">{{item.hate}}</text>
+            </view>
+            <!--分割线-->
+            <!-- <view class="cut-line"></view> -->
+          </view>
+
+          <!--转发-->
+          <view class="bottom-item" catchtap="zfEvent" id="{{item.id}}">
+            <view class="bottom-item-content">
+              <image src="../../images/index/mainCellShare.png" mode="center"></image>
+              <text class="bottom-item-zan-text">{{item.repost}}</text>
+            </view>
+            <!--分割线-->
+            <!-- <view class="cut-line"></view> -->
+          </view>
+
+          <!--评论-->
+          <!-- <view class="bottom-item">
+          <view class="bottom-item-content">
+            <image src="../../images/index/mainCellComment.png" mode="center"></image>
+            <text class="bottom-item-zan-text">{{item.comment}}</text>
+          </view>
+        </view> -->
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
