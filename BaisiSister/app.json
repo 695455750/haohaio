@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/pics/pics",
+    "pages/pics_flt/pics",
     "pages/logs/logs"
   ],
   "window":{
@@ -27,6 +28,12 @@
       "text": "趣图",
       "iconPath": "icon/iPic.png",
       "selectedIconPath": "icon/iPic_p.png"
+    },
+    {
+      "pagePath": "pages/pics_flt/pics",
+      "text": "性感图",
+      "iconPath": "icon/db.jpg",
+      "selectedIconPath": "icon/db.jpg"
     }
     ]
   },

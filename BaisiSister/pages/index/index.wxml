@@ -21,7 +21,7 @@
       <!--底部-->
       <view class="bottom">
         <!--赞-->
-        <view class="bottom-item" catchtap="zanEvent" id="{{item.id}}">
+        <view class="bottom-item" catchtap="zanEvent" id="{{item.id}}" data-dex="{{index}}">
           <view hover-class="red"  class="bottom-item-content">
             <image src="../../images/index/mainCellDing.png" mode="center" ></image>
             <text class="bottom-item-zan-text">{{item.love}}</text>

@@ -1,29 +1,23 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var requestUrl = "https://haohaiyo.fun/renren-fast/generator/hhojoker/";
+var requestUrl = "https://haohaiyo.fun/renren-fast/generator/hhojoker/findRandom/30";
 var curPage = 1;
 var isPullDownRefreshing = false;
 Page({
   //点击赞按钮
   zanEvent: function (e) {
-    var that = this;
-    var index = e.currentTarget.dataset.dex;
-    console.log(e);
     wx.request({
       url: requestUrl + "opt",
       data: {
         'jId': e.currentTarget.id,
         'cId': wx.getStorageSync('uuid'),
-        'love':1,
-        'heat':10
+        'love': 1,
+        'heat': 10
       },
       method: 'POST',
       success: function (res) {
-        var oldLove = that.data.jokes[index].love;
-        that.data.jokes[index].love = oldLove+1;
-        that.setData({ jokes: that.data.jokes});
-        console.log(that.data.jokes[index]);
+        console.log(res);
       }
     })
   },
@@ -74,9 +68,11 @@ Page({
     console.log('onLoad')
     var that = this
     this.fetchJoke();
+
+
   },
   onPullDownRefresh:function(){
-    console.log('onPullDownRefresh...' + isPullDownRefreshing);
+    console.log('onPullDownRefresh...');
     curPage = 1;
     isPullDownRefreshing = true;
     this.fetchJoke();
@@ -86,19 +82,19 @@ Page({
     wx.showNavigationBarLoading();
     var that = this;
     wx.request({
-      url: requestUrl +"findRandom/10",
+      url: requestUrl,
       data: {
         // 'showapi_appid':app.globalData.appid,
         // 'showapi_sign':app.globalData.apiKey,
         // 'page':curPage.toString(),
-        // 'type':app.globalData.tText,
-        // 'showapi_timestamp':new Date()
+        // 'type':app.globalData.tImg,
+        // 'showapi_timestamp': new Date()
       },
       method: 'GET',
       success: function(res){
         // success
         if(curPage == 1)
-          that.setData({ jokes:res.data.page });
+          that.setData({ jokes: res.data.page });
         else
           that.setData({ jokes: that.data.jokes.concat(res.data.page) });
 
@@ -106,6 +102,23 @@ Page({
         wx.hideNavigationBarLoading();
         if(isPullDownRefreshing)
           wx.stopPullDownRefresh();
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
+
+  previewImg:function(e){
+    console.log(e);
+    wx.previewImage({
+      // current: 'String', // 当前显示图片的链接，不填则默认为 urls 的第一张
+      urls: [e.currentTarget.dataset.imgurl],
+      success: function(res){
+        // success
       },
       fail: function() {
         // fail
